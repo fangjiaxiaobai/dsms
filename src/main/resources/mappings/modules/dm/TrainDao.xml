@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.dm.dao.TrainDao">
+    
+	<sql id="trainColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.start_date AS "startDate",
+		a.count_time AS "countTime",
+		a.pay_flag AS "payFlag",
+		a.pay_money AS "payMoney",
+		a.s_id AS "sId",
+		a.c_id AS "cId",
+		a.v_id AS "vId"
+	</sql>
+	
+	<sql id="trainJoins">
+	</sql>
+    
+	<select id="get" resultType="Train">
+		SELECT 
+			<include refid="trainColumns"/>
+		FROM train a
+		<include refid="trainJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Train">
+		SELECT 
+			<include refid="trainColumns"/>
+		FROM train a
+		<include refid="trainJoins"/>
+		<where>
+			
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="startDate != null and startDate != ''">
+				AND a.start_date = #{startDate}
+			</if>
+			<if test="payFlag != null and payFlag != ''">
+				AND a.pay_flag = #{payFlag}
+			</if>
+			<if test="payMoney != null and payMoney != ''">
+				AND a.pay_money = #{payMoney}
+			</if>
+			<if test="sId != null and sId != ''">
+				AND a.s_id = #{sId}
+			</if>
+			<if test="cId != null and cId != ''">
+				AND a.c_id = #{cId}
+			</if>
+			<if test="vId != null and vId != ''">
+				AND a.v_id = #{vId}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Train">
+		SELECT 
+			<include refid="trainColumns"/>
+		FROM train a
+		<include refid="trainJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO train(
+			id,
+			name,
+			start_date,
+			count_time,
+			pay_flag,
+			pay_money,
+			s_id,
+			c_id,
+			v_id
+		) VALUES (
+			#{id},
+			#{name},
+			#{startDate},
+			#{countTime},
+			#{payFlag},
+			#{payMoney},
+			#{sId},
+			#{cId},
+			#{vId}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE train SET 	
+			name = #{name},
+			start_date = #{startDate},
+			count_time = #{countTime},
+			pay_flag = #{payFlag},
+			pay_money = #{payMoney},
+			s_id = #{sId},
+			c_id = #{cId},
+			v_id = #{vId}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM train
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

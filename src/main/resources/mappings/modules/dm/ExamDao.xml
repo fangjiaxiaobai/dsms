@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.dm.dao.ExamDao">
+    
+	<sql id="examColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.time AS "time",
+		a.score AS "score",
+		a.pass_flag AS "passFlag",
+		a.pay_flag AS "payFlag",
+		a.pay_money AS "payMoney",
+		a.exam_count AS "examCount",
+		a.fail_reason AS "failReason",
+		a.sid AS "sid"
+	</sql>
+	
+	<sql id="examJoins">
+	</sql>
+    
+	<select id="get" resultType="Exam">
+		SELECT 
+			<include refid="examColumns"/>
+		FROM exam a
+		<include refid="examJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Exam">
+		SELECT 
+			<include refid="examColumns"/>
+		FROM exam a
+		<include refid="examJoins"/>
+		<where>
+			
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="score != null and score != ''">
+				AND a.score = #{score}
+			</if>
+			<if test="passFlag != null and passFlag != ''">
+				AND a.pass_flag = #{passFlag}
+			</if>
+			<if test="payFlag != null and payFlag != ''">
+				AND a.pay_flag = #{payFlag}
+			</if>
+			<if test="examCount != null and examCount != ''">
+				AND a.exam_count = #{examCount}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Exam">
+		SELECT 
+			<include refid="examColumns"/>
+		FROM exam a
+		<include refid="examJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO exam(
+			id,
+			name,
+			time,
+			score,
+			pass_flag,
+			pay_flag,
+			pay_money,
+			exam_count,
+			fail_reason,
+			sid
+		) VALUES (
+			#{id},
+			#{name},
+			#{time},
+			#{score},
+			#{passFlag},
+			#{payFlag},
+			#{payMoney},
+			#{examCount},
+			#{failReason},
+			#{sid}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE exam SET 	
+			name = #{name},
+			time = #{time},
+			score = #{score},
+			pass_flag = #{passFlag},
+			pay_flag = #{payFlag},
+			pay_money = #{payMoney},
+			exam_count = #{examCount},
+			fail_reason = #{failReason},
+			sid = #{sid}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM exam
+		WHERE id = #{id}
+	</update>
+
+
+    <select id="findStudentExamCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM exam where sid=#{sid} and name=#{NAME} and pass_flag=0 or pass_flag=2
+    </select>
+</mapper>

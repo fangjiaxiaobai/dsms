@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.dm.dao.VehicleDao">
+    
+	<sql id="vehicleColumns">
+		a.id AS "id",
+		a.type AS "type",
+		a.plate AS "plate"
+	</sql>
+	
+	<sql id="vehicleJoins">
+	</sql>
+    
+	<select id="get" resultType="Vehicle">
+		SELECT 
+			<include refid="vehicleColumns"/>
+		FROM vehicle a
+		<include refid="vehicleJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Vehicle">
+		SELECT 
+			<include refid="vehicleColumns"/>
+		FROM vehicle a
+		<include refid="vehicleJoins"/>
+		<where>
+			
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type LIKE 
+					<if test="dbName == 'oracle'">'%'||#{type}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{type}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{type},'%')</if>
+			</if>
+			<if test="plate != null and plate != ''">
+				AND a.plate LIKE 
+					<if test="dbName == 'oracle'">'%'||#{plate}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{plate}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{plate},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Vehicle">
+		SELECT 
+			<include refid="vehicleColumns"/>
+		FROM vehicle a
+		<include refid="vehicleJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO vehicle(
+			id,
+			type,
+			plate
+		) VALUES (
+			#{id},
+			#{type},
+			#{plate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE vehicle SET 	
+			type = #{type},
+			plate = #{plate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM vehicle
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
