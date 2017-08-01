@@ -16,6 +16,7 @@
 			<value>
 				/static/** = anon
 				/userfiles/** = anon
+                ${adminPath}/fileUpload/** = anon
 				${adminPath}/cas = cas
 				${adminPath}/login = authc
 				${adminPath}/logout = logout
@@ -56,7 +57,7 @@
 	</bean>
 	
 	<!-- 自定义会话管理配置 -->
-	<bean id="sessionManager" class="com.thinkgem.jeesite.common.security.shiro.session.SessionManager"> 
+	<bean id="sessionManager" class="com.fxb.jeesite.common.security.shiro.session.SessionManager">
 		<property name="sessionDAO" ref="sessionDAO"/>
 		
 		<!-- 会话超时时间，单位：毫秒  -->
@@ -82,7 +83,7 @@
 <!-- 		<property name="sessionIdGenerator" ref="idGen" /> -->
 <!-- 		<property name="sessionKeyPrefix" value="${redis.keyPrefix}_session_" /> -->
 <!-- 	</bean> -->
-	<bean id="sessionDAO" class="com.thinkgem.jeesite.common.security.shiro.session.CacheSessionDAO">
+	<bean id="sessionDAO" class="com.fxb.jeesite.common.security.shiro.session.CacheSessionDAO">
 		<property name="sessionIdGenerator" ref="idGen" />
 		<property name="activeSessionsCacheName" value="activeSessionsCache" />
 		<property name="cacheManager" ref="shiroCacheManager" />

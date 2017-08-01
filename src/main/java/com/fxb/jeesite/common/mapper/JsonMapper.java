@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.mapper;
+package com.fxb.jeesite.common.mapper;
 
 import java.io.IOException;
 import java.util.List;

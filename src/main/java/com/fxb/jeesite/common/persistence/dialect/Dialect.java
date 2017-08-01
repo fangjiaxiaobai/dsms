@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.persistence.dialect;
+package com.fxb.jeesite.common.persistence.dialect;
 
 /**
  * 类似hibernate的Dialect,但只精简出分页部分

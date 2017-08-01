@@ -1,4 +1,4 @@
-package com.thinkgem.jeesite.common.servlet;
+package com.fxb.jeesite.common.servlet;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.util.UriUtils;
 
-import com.thinkgem.jeesite.common.config.Global;
+import com.fxb.jeesite.common.config.Global;
 
 /**
  * 查看CK上传的图片

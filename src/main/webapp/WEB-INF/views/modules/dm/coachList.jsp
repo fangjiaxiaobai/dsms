@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>开始记录管理</title>
+	<title>教练信息管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,16 +18,13 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/dm/coach/">开始记录列表</a></li>
-		<shiro:hasPermission name="dm:coach:edit"><li><a href="${ctx}/dm/coach/form">开始记录添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/dm/coach/">教练信息列表</a></li>
+		<shiro:hasPermission name="dm:coach:edit"><li><a href="${ctx}/dm/coach/form">添加教练信息</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="coach" action="${ctx}/dm/coach/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>id：</label>
-				<form:input path="id" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
 			<li><label>姓名：</label>
 				<form:input path="name" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>
@@ -62,7 +59,7 @@
 				<th>联系电话</th>
 				<th>出生日期</th>
 				<th>家庭住址</th>
-				<shiro:hasPermission name="dm:coach:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="dm:coach:view"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -86,7 +83,7 @@
 				<td>
 					${coach.homeAddress}
 				</td>
-				<shiro:hasPermission name="dm:coach:edit"><td>
+				<shiro:hasPermission name="dm:coach:view"><td>
     				<a href="${ctx}/dm/coach/form?id=${coach.id}">修改</a>
 					<a href="${ctx}/dm/coach/delete?id=${coach.id}" onclick="return confirmx('确认要删除该开始记录吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>

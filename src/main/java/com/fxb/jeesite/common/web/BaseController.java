@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.web;
+package com.fxb.jeesite.common.web;
 
 import java.beans.PropertyEditorSupport;
 import java.io.IOException;
@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.thinkgem.jeesite.common.beanvalidator.BeanValidators;
-import com.thinkgem.jeesite.common.mapper.JsonMapper;
-import com.thinkgem.jeesite.common.utils.DateUtils;
+import com.fxb.jeesite.common.beanvalidator.BeanValidators;
+import com.fxb.jeesite.common.mapper.JsonMapper;
+import com.fxb.jeesite.common.utils.DateUtils;
 
 /**
  * 控制器支持类

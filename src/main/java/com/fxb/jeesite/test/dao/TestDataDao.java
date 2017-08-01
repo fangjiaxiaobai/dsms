@@ -1,11 +1,11 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.test.dao;
+package com.fxb.jeesite.test.dao;
 
-import com.thinkgem.jeesite.common.persistence.CrudDao;
-import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
-import com.thinkgem.jeesite.test.entity.TestData;
+import com.fxb.jeesite.common.persistence.CrudDao;
+import com.fxb.jeesite.common.persistence.annotation.MyBatisDao;
+import com.fxb.jeesite.test.entity.TestData;
 
 /**
  * 单表生成DAO接口

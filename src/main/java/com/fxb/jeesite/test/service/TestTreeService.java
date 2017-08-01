@@ -1,17 +1,17 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.test.service;
+package com.fxb.jeesite.test.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.thinkgem.jeesite.common.service.TreeService;
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.test.entity.TestTree;
-import com.thinkgem.jeesite.test.dao.TestTreeDao;
+import com.fxb.jeesite.common.service.TreeService;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.test.entity.TestTree;
+import com.fxb.jeesite.test.dao.TestTreeDao;
 
 /**
  * 树结构生成Service

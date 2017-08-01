@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.test.web;
+package com.fxb.jeesite.test.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.thinkgem.jeesite.common.config.Global;
-import com.thinkgem.jeesite.common.persistence.Page;
-import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.test.entity.TestDataMain;
-import com.thinkgem.jeesite.test.service.TestDataMainService;
+import com.fxb.jeesite.common.config.Global;
+import com.fxb.jeesite.common.persistence.Page;
+import com.fxb.jeesite.common.web.BaseController;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.test.entity.TestDataMain;
+import com.fxb.jeesite.test.service.TestDataMainService;
 
 /**
  * 主子表生成Controller

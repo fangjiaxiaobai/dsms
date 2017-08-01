@@ -75,7 +75,7 @@
 				<th>是否拿证</th>
 				<th>学车类型</th>
 				<th>交费金额</th>
-				<shiro:hasPermission name="dm:student:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="dm:student:view"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -114,7 +114,7 @@
 				<td>
 					${student.money}
 				</td>
-				<shiro:hasPermission name="dm:student:edit"><td>
+				<shiro:hasPermission name="dm:student:view"><td>
     				<a href="${ctx}/dm/student/form?id=${student.id}">修改</a>
 					<a href="${ctx}/dm/student/delete?id=${student.id}" onclick="return confirmx('确认要删除该学员吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>

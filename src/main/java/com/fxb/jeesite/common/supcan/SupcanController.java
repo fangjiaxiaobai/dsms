@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.supcan;
+package com.fxb.jeesite.common.supcan;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.thinkgem.jeesite.common.config.Global;
-import com.thinkgem.jeesite.common.supcan.annotation.treelist.SupTreeList;
-import com.thinkgem.jeesite.common.supcan.annotation.treelist.cols.SupCol;
-import com.thinkgem.jeesite.common.supcan.annotation.treelist.cols.SupGroup;
-import com.thinkgem.jeesite.common.supcan.treelist.TreeList;
-import com.thinkgem.jeesite.common.supcan.treelist.cols.Col;
-import com.thinkgem.jeesite.common.supcan.treelist.cols.Group;
-import com.thinkgem.jeesite.common.utils.CacheUtils;
-import com.thinkgem.jeesite.common.utils.SpringContextHolder;
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.common.web.BaseController;
+import com.fxb.jeesite.common.config.Global;
+import com.fxb.jeesite.common.supcan.annotation.treelist.SupTreeList;
+import com.fxb.jeesite.common.supcan.annotation.treelist.cols.SupCol;
+import com.fxb.jeesite.common.supcan.annotation.treelist.cols.SupGroup;
+import com.fxb.jeesite.common.supcan.treelist.TreeList;
+import com.fxb.jeesite.common.supcan.treelist.cols.Col;
+import com.fxb.jeesite.common.supcan.treelist.cols.Group;
+import com.fxb.jeesite.common.utils.CacheUtils;
+import com.fxb.jeesite.common.utils.SpringContextHolder;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.common.web.BaseController;
 
 /**
  * 硕正Controller

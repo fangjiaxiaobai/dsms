@@ -1,4 +1,4 @@
-package com.thinkgem.jeesite.common.utils;
+package com.fxb.jeesite.common.utils;
 
 import java.text.DecimalFormat;
 

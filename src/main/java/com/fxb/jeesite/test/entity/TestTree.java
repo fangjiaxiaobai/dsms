@@ -1,13 +1,13 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.test.entity;
+package com.fxb.jeesite.test.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-import com.thinkgem.jeesite.common.persistence.TreeEntity;
+import com.fxb.jeesite.common.persistence.TreeEntity;
 
 /**
  * 树结构生成Entity

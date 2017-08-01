@@ -2,12 +2,14 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>预约考试</title>
+	<title>录入结果</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 
         $(function(){
             $("#payment").hide();
+            $("#reason").hide();
+
         });
 
 		$(document).ready(function() {
@@ -37,6 +39,18 @@
                         $("#payment").show();
                     }else{
                         $("#payment").hide();
+                    }
+                }
+            });
+/**
+             * 当考试结果为未通过或者个人原因取消的时候，原因框显示或者其他考试结果为隐藏
+             */
+			$("#passFlag").change(function() {
+                if ($("#payment").length >= 0) {
+                    if ($("#passFlag").val() == 0 || $("#passFlag").val()==2) {
+                        $("#reason").show();
+                    }else{
+                        $("#reason").hide();
                     }
                 }
             });
@@ -84,7 +98,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/dm/exam/">考试记录</a></li>
-        <li class="active"><a href="${ctx}/dm/exam/orderExam">预约考试</a></li>
+        <li class="active"><a href="${ctx}/dm/exam/orderExam">录入考试成绩</a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="exam" action="${ctx}/dm/exam/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -92,9 +106,8 @@
         <div class="control-group">
             <label class="control-label">学员姓名：</label>
             <div class="controls">
-                <form:select path="sid" class="input-xlarge required" id="studentName">
-                    <form:option value="" label=""/>
-                    <form:options items="${students}" itemLabel="name" itemValue="id" htmlEscape="false"/>
+                <form:select path="student.id" class="input-xlarge required" disabled="true">
+                    <form:option value="${exam.student.id}" label="${exam.student.name}"/>
                 </form:select>
                 <span class="help-inline"><font color="red">*</font> </span>
             </div>
@@ -102,17 +115,15 @@
 		<div class="control-group">
 			<label class="control-label">考试科目：</label>
 			<div class="controls">
-                <form:select path="name" class="input-xlarge " id="examType">
-                    <form:option value="" label=""/>
-                    <form:options items="${fns:getDictList('examType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+                <form:select path="name" class="input-xlarge " id="examType" disabled="true">
+                    <form:option value="${exam.name}" label="${fns:getDictLabel(exam.name, 'examType', '')}"/>
                 </form:select>
-				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">考试时间：</label>
 			<div class="controls">
-				<input name="time" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+				<input name="time" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required" disabled="true"
 					value="<fmt:formatDate value="${exam.time}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 				<span class="help-inline"><font color="red">*</font> </span>
@@ -122,9 +133,8 @@
 		<div class="control-group">
 			<label class="control-label">是否交费：</label>
 			<div class="controls">
-				<form:select path="payFlag" class="input-xlarge required" id="payFlag">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('pay_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				<form:select path="payFlag" class="input-xlarge required" id="payFlag" disabled="true">
+					<form:option value="${exam.payFlag}" label="${fns:getDictLabel(exam.payFlag, 'pay_flag', '')}"/>
 				</form:select>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
@@ -138,8 +148,32 @@
 		<div class="control-group">
 			<label class="control-label">考试次数：</label>
 			<div class="controls">
-				<form:input path="examCount" id="examCount"/>
+				<form:input path="examCount" id="examCount" disabled="true"/>
 				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">考试得分：</label>
+			<div class="controls">
+				<form:input path="score" id="score" />
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">考试结果：</label>
+			<div class="controls">
+                <form:select path="passFlag" class="input-xlarge required" id="passFlag">
+                    <form:option value="" label=""/>
+                    <form:options items="${fns:getDictList('examResult')}" itemLabel="label" itemValue="value" />
+                </form:select>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group" id="reason">
+			<label class="control-label">原因：</label>
+			<div class="controls">
+				<form:input path="failReason" id="failReason" />
+				<span class="help-inline"><font color="red">*</font></span>
 			</div>
 		</div>
 

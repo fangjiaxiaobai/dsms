@@ -1,8 +1,8 @@
-package com.thinkgem.jeesite.common.xstream;
+package com.fxb.jeesite.common.xstream;
 
 import java.util.Date;
 
-import com.thinkgem.jeesite.common.utils.DateUtils;
+import com.fxb.jeesite.common.utils.DateUtils;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;

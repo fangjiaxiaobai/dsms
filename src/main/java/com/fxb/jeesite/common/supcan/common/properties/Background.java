@@ -1,10 +1,10 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.supcan.common.properties;
+package com.fxb.jeesite.common.supcan.common.properties;
 
-import com.thinkgem.jeesite.common.supcan.annotation.common.properties.SupBackground;
-import com.thinkgem.jeesite.common.utils.ObjectUtils;
+import com.fxb.jeesite.common.supcan.annotation.common.properties.SupBackground;
+import com.fxb.jeesite.common.utils.ObjectUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 

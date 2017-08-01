@@ -856,6 +856,7 @@
 					</systemProperties>
 				</configuration>
 			</plugin>
+
 			
 			<!-- resource插件 -->
 			<plugin>

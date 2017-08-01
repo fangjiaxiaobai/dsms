@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2005-2012 springside.org.cn
  */
-package com.thinkgem.jeesite.common.mapper;
+package com.fxb.jeesite.common.mapper;
 
 import java.util.Collection;
 import java.util.List;

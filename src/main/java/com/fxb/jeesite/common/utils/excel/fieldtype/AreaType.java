@@ -1,11 +1,11 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.utils.excel.fieldtype;
+package com.fxb.jeesite.common.utils.excel.fieldtype;
 
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.modules.sys.entity.Area;
-import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.modules.sys.entity.Area;
+import com.fxb.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 字段类型转换

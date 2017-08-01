@@ -1,16 +1,16 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.utils.excel.fieldtype;
+package com.fxb.jeesite.common.utils.excel.fieldtype;
 
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.common.utils.Collections3;
-import com.thinkgem.jeesite.common.utils.SpringContextHolder;
-import com.thinkgem.jeesite.modules.sys.entity.Role;
-import com.thinkgem.jeesite.modules.sys.service.SystemService;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.common.utils.Collections3;
+import com.fxb.jeesite.common.utils.SpringContextHolder;
+import com.fxb.jeesite.modules.sys.entity.Role;
+import com.fxb.jeesite.modules.sys.service.SystemService;
 
 /**
  * 字段类型转换

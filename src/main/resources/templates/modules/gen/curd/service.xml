@@ -14,8 +14,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.thinkgem.jeesite.common.persistence.Page;
-import com.thinkgem.jeesite.common.service.CrudService;
+import com.fxb.jeesite.common.persistence.Page;
+import com.fxb.jeesite.common.service.CrudService;
 import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Dao;
 
@@ -51,5 +51,5 @@ public class ${ClassName}Service extends CrudService<${ClassName}Dao, ${ClassNam
 	}
 	
 }]]>
-	</content>
+    </content>
 </template>

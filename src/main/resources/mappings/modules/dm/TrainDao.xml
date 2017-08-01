@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.dm.dao.TrainDao">
-    
+<mapper namespace="com.fxb.jeesite.modules.dm.dao.TrainDao">
+
+    <resultMap id="TrainResultMap" type="com.fxb.jeesite.modules.dm.entity.Train" >
+        <id property="id" column="id" jdbcType="VARCHAR"></id>
+        <result property="name" column="name" jdbcType="VARCHAR" />
+        <result property="startDate" column="start_date" jdbcType="TIME" />
+        <result property="countTime" column="count_time" jdbcType="FLOAT" />
+        <result property="payFlag" column="pay_flag" jdbcType="INTEGER" />
+        <result property="payMoney" column="pay_money" jdbcType="INTEGER" />
+
+        <association property="student" column="sId" select="findStudentById">
+            <id column="id" jdbcType="VARCHAR" property="id"/>
+            <result property="name" column="name" jdbcType="VARCHAR" />
+            <result property="other_contacts" column="otherContacts" jdbcType="VARCHAR" />
+        </association>
+
+        <association property="coach" column="cId" select="findCoachById">
+            <id column="id" jdbcType="VARCHAR" property="id" />
+            <result property="name" column="name" jdbcType="VARCHAR" />
+            <result property="otherContacts" column="other_contacts" jdbcType="VARCHAR" />
+        </association>
+
+        <association column="vId"  property="vehicle" javaType="com.fxb.jeesite.modules.dm.entity.Vehicle" select="findVehicleById">
+            <id column="id" jdbcType="VARCHAR" property="id" />
+            <result property="type" jdbcType="VARCHAR" column="type" />
+            <result property="plate" jdbcType="VARCHAR" column="plate" />
+        </association>
+
+    </resultMap>
+
 	<sql id="trainColumns">
 		a.id AS "id",
 		a.name AS "name",
@@ -13,23 +41,19 @@
 		a.c_id AS "cId",
 		a.v_id AS "vId"
 	</sql>
-	
-	<sql id="trainJoins">
-	</sql>
-    
-	<select id="get" resultType="Train">
+
+	<select id="get" resultMap="TrainResultMap">
 		SELECT 
 			<include refid="trainColumns"/>
 		FROM train a
-		<include refid="trainJoins"/>
+
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="Train">
+	<select id="findList" resultMap="TrainResultMap">
 		SELECT 
 			<include refid="trainColumns"/>
 		FROM train a
-		<include refid="trainJoins"/>
 		<where>
 			
 			<if test="name != null and name != ''">
@@ -39,7 +63,10 @@
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
 			</if>
 			<if test="startDate != null and startDate != ''">
-				AND a.start_date = #{startDate}
+                AND a.start_date LIKE
+                <if test="dbName == 'oracle'">'%'||#{startDate}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{startDate}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{startDate},'%')</if>
 			</if>
 			<if test="payFlag != null and payFlag != ''">
 				AND a.pay_flag = #{payFlag}
@@ -48,13 +75,13 @@
 				AND a.pay_money = #{payMoney}
 			</if>
 			<if test="sId != null and sId != ''">
-				AND a.s_id = #{sId}
+				AND a.s_id = #{student.id}
 			</if>
 			<if test="cId != null and cId != ''">
-				AND a.c_id = #{cId}
+				AND a.c_id = #{coach.id}
 			</if>
 			<if test="vId != null and vId != ''">
-				AND a.v_id = #{vId}
+				AND a.v_id = #{vehicle.id}
 			</if>
 		</where>
 		<choose>
@@ -66,24 +93,51 @@
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="Train">
+	<select id="findAllList" resultMap="TrainResultMap">
 		SELECT 
 			<include refid="trainColumns"/>
 		FROM train a
-		<include refid="trainJoins"/>
-		<where>
-			
-		</where>		
+        <where>
+
+            <if test="name != null and name != ''">
+                AND a.name LIKE
+                <if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+            </if>
+            <if test="startDate != null and startDate != ''">
+                AND a.start_date LIKE
+                <if test="dbName == 'oracle'">'%'||#{startDate}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{startDate}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{startDate},'%')</if>
+            </if>
+            <if test="payFlag != null and payFlag != ''">
+                AND a.pay_flag = #{payFlag}
+            </if>
+            <if test="payMoney != null and payMoney != ''">
+                AND a.pay_money = #{payMoney}
+            </if>
+            <if test="sId != null and sId != ''">
+                AND a.s_id = #{student.id}
+            </if>
+            <if test="cId != null and cId != ''">
+                AND a.c_id = #{coach.id}
+            </if>
+            <if test="vId != null and vId != ''">
+                AND a.v_id = #{vehicle.id}
+            </if>
+        </where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
-			<otherwise>
-			</otherwise>
 		</choose>
 	</select>
 	
 	<insert id="insert">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            select replace(uuid(),'-','') from dual <!-- //原样照抄 -->
+        </selectKey>
 		INSERT INTO train(
 			id,
 			name,
@@ -101,9 +155,9 @@
 			#{countTime},
 			#{payFlag},
 			#{payMoney},
-			#{sId},
-			#{cId},
-			#{vId}
+			#{student.id},
+			#{coach.id},
+			#{vehicle.id}
 		)
 	</insert>
 	
@@ -114,9 +168,9 @@
 			count_time = #{countTime},
 			pay_flag = #{payFlag},
 			pay_money = #{payMoney},
-			s_id = #{sId},
-			c_id = #{cId},
-			v_id = #{vId}
+			s_id = #{student.id},
+			c_id = #{coach.id},
+			v_id = #{vehicle.id}
 		WHERE id = #{id}
 	</update>
 	
@@ -124,5 +178,27 @@
 		DELETE FROM train
 		WHERE id = #{id}
 	</update>
+
+
+    <!-- 查询student-->
+    <select id="findStudentById" resultType="com.fxb.jeesite.modules.dm.entity.Student" >
+        SELECT id,NAME,other_contacts FROM student where id=#{sId}
+    </select>
+
+    <select id="findVehicleById" resultType="com.fxb.jeesite.modules.dm.entity.Vehicle" >
+        SELECT id,type,plate FROM  vehicle where id=#{vId}
+    </select>
+
+    <select id="findCoachById" resultType="com.fxb.jeesite.modules.dm.entity.Coach">
+        SELECT id,name FROM coach where id=#{cId}
+    </select>
+
+    <select id="getTodayTask" resultMap="TrainResultMap">
+        SELECT <include refid="trainColumns"/> FROM train a where DATEDIFF(start_date,now())=0
+    </select>
+
+    <select id="getTomorrowTask" resultMap="TrainResultMap">
+        SELECT <include refid="trainColumns"/> FROM train a where DATEDIFF(start_date,now())=1
+    </select>
 	
 </mapper>

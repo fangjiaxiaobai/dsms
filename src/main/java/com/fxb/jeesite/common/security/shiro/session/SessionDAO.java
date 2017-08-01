@@ -1,4 +1,4 @@
-package com.thinkgem.jeesite.common.security.shiro.session;
+package com.fxb.jeesite.common.security.shiro.session;
 
 import java.util.Collection;
 

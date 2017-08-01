@@ -25,31 +25,40 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>姓名：</label>
-				<form:input path="name" htmlEscape="false" maxlength="64" class="input-medium"/>
+			<li><label>练习科目：</label>
+                <form:select path="name" htmlEscape="false" class="input-medium">
+                    <form:option value="" label="全部" />
+                    <form:options items="${fns:getDictList('examType')}" itemLabel="label" itemValue="value"/>
+                </form:select>
 			</li>
+            <li><label>学员姓名：</label>
+                <form:select path="student.id" htmlEscape="false" class="input-medium" >
+                    <form:option value="" label="不限" />
+                    <form:options items="${students}" itemValue="id" itemLabel="name" />
+                </form:select>
+            </li>
+            <li><label>教练姓名：</label>
+                <form:select path="coach.id" htmlEscape="false" class="input-medium" >
+                    <form:option value="" label="不限" />
+                    <form:options items="${coaches}" itemValue="id" itemLabel="name" />
+                </form:select>
+            </li>
 			<li><label>开始时间：</label>
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${train.startDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${train.startDate}" pattern="yyyy-MM-dd HH:mm"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"/>
 			</li>
 			<li><label>是否缴费：</label>
 				<form:select path="payFlag" class="input-medium">
-					<form:option value="" label=""/>
+					<form:option value="" label="不限"/>
 					<form:options items="${fns:getDictList('payflag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>
-			<li><label>缴费金额：</label>
-				<form:input path="payMoney" htmlEscape="false" class="input-medium"/>
-			</li>
-			<li><label>学员姓名：</label>
-				<form:input path="sId" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
-			<li><label>教练姓名：</label>
-				<form:input path="cId" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
-			<li><label>车辆名称：</label>
-				<form:input path="vId" htmlEscape="false" maxlength="64" class="input-medium"/>
+			<li><label>使用车辆：</label>
+                <form:select path="vehicle" class="input-medium require">
+                    <form:option value="" label="不限"/>
+                    <form:options items="${vehicles}" itemLabel="plantANdType" itemValue="id" htmlEscape="false" />
+                </form:select>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -59,45 +68,45 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>姓名</th>
+                <th>学员姓名</th>
+                <th>教练姓名</th>
 				<th>开始时间</th>
-				<th>总计时</th>
+				<th>本次计时</th>
 				<th>是否缴费</th>
 				<th>缴费金额</th>
-				<th>学员姓名</th>
-				<th>教练姓名</th>
+                <th>练车科目</th>
 				<th>车辆名称</th>
-				<shiro:hasPermission name="dm:train:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="dm:train:view"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="train">
-			<tr>
-				<td><a href="${ctx}/dm/train/form?id=${train.id}">
-					${train.name}
-				</a></td>
-				<td>
-					<fmt:formatDate value="${train.startDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+            <tr>
+                <td>
+					${train.student.name}
 				</td>
-				<td>
-					${train.countTime}
+                <td>
+                    ${train.coach.name}
+                </td>
+                <td>
+					<fmt:formatDate value="${train.startDate}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
-				<td>
-					${fns:getDictLabel(train.payFlag, 'payflag', '')}
+                <td>
+                    ${fns:getDictLabel(train.countTime, 'timeCount', '')}
 				</td>
-				<td>
+                <td>
+					${fns:getDictLabel(train.payFlag, 'pay_flag', '')}
+				</td>
+                <td>
 					${train.payMoney}
 				</td>
-				<td>
-					${train.sId}
+                <td>
+                   ${fns:getDictLabel(train.name, 'examType', '')}
 				</td>
 				<td>
-					${train.cId}
+					${train.vehicle.type}-${train.vehicle.plate}
 				</td>
-				<td>
-					${train.vId}
-				</td>
-				<shiro:hasPermission name="dm:train:edit"><td>
+				<shiro:hasPermission name="dm:train:view"><td>
     				<a href="${ctx}/dm/train/form?id=${train.id}">修改</a>
 					<a href="${ctx}/dm/train/delete?id=${train.id}" onclick="return confirmx('确认要删除该练车吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>

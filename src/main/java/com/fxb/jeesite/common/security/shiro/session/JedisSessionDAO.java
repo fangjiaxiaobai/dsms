@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.security.shiro.session;
+package com.fxb.jeesite.common.security.shiro.session;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -23,11 +23,11 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
 import com.google.common.collect.Sets;
-import com.thinkgem.jeesite.common.config.Global;
-import com.thinkgem.jeesite.common.utils.DateUtils;
-import com.thinkgem.jeesite.common.utils.JedisUtils;
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.common.web.Servlets;
+import com.fxb.jeesite.common.config.Global;
+import com.fxb.jeesite.common.utils.DateUtils;
+import com.fxb.jeesite.common.utils.JedisUtils;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.common.web.Servlets;
 
 /**
  * 自定义授权会话管理类

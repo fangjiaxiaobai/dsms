@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.security.shiro;
+package com.fxb.jeesite.common.security.shiro;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.tags.PermissionTag;

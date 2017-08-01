@@ -1,4 +1,4 @@
-package com.thinkgem.jeesite.common.mapper.adapters;
+package com.fxb.jeesite.common.mapper.adapters;
 
 import java.util.ArrayList;
 import java.util.List;

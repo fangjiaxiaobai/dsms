@@ -7,7 +7,9 @@
 	<script type="text/javascript">
 
         $(function(){
+            <c:if test="exam.payFlag==0 || exam.payFlag==2">
             $("#payment").hide();
+            </c:if>
         });
 
 		$(document).ready(function() {
@@ -48,7 +50,6 @@
             $("#studentName").change(function(){
                 var studentId = $("#studentName").val();
                 var examType = $("#examType").val();
-                alert(studentId+"----"+examType);
                 if(examType&&studentId){
                     $.ajax({
                         url:'${ctx}/dm/exam/getStudentExamCount',
@@ -67,15 +68,13 @@
             $("#examType").change(function(){
                 var studentId = $("#studentName").val();
                 var examType = $("#examType").val();
-                alert(studentId+"----"+examType);
                 if(examType&&studentId){
                     $.ajax({
                         url:'${ctx}/dm/exam/getStudentExamCount',
                         method:'POST',
                         dataType:'text',
-                        data:{'id':studentId,'type':examType},
+                        data:{'student.id':studentId,'name':examType},
                         success:function(data){
-                            alert(data);
                             $("#examCount").val(data);
                         }
                     });
@@ -95,7 +94,7 @@
         <div class="control-group">
             <label class="control-label">学员姓名：</label>
             <div class="controls">
-                <form:select path="sid" class="input-xlarge required" id="studentName">
+                <form:select path="student.id" class="input-xlarge required" id="studentName">
                     <form:option value="" label=""/>
                     <form:options items="${students}" itemLabel="name" itemValue="id" htmlEscape="false"/>
                 </form:select>
@@ -105,7 +104,7 @@
 		<div class="control-group">
 			<label class="control-label">考试科目：</label>
 			<div class="controls">
-                <form:select path="passFlag" class="input-xlarge " id="examType">
+                <form:select path="name" class="input-xlarge " id="examType">
                     <form:option value="" label=""/>
                     <form:options items="${fns:getDictList('examType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
                 </form:select>
@@ -135,7 +134,7 @@
 		<div class="control-group" id="payment">
 			<label class="control-label">交费金额：</label>
 			<div class="controls">
-				<form:input path="payMoney" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="payMoney" htmlEscape="false" class="input-xlarge " value="0"/>
 			</div>
 		</div>
 		<div class="control-group">

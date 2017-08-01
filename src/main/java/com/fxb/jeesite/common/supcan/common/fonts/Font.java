@@ -1,10 +1,10 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.supcan.common.fonts;
+package com.fxb.jeesite.common.supcan.common.fonts;
 
-import com.thinkgem.jeesite.common.supcan.annotation.common.fonts.SupFont;
-import com.thinkgem.jeesite.common.utils.ObjectUtils;
+import com.fxb.jeesite.common.supcan.annotation.common.fonts.SupFont;
+import com.fxb.jeesite.common.utils.ObjectUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 

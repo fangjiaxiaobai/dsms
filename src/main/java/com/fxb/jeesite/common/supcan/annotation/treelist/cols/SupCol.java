@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.supcan.annotation.treelist.cols;
+package com.fxb.jeesite.common.supcan.annotation.treelist.cols;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

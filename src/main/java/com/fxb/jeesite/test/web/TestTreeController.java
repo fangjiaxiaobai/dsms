@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.test.web;
+package com.fxb.jeesite.test.web;
 
 import java.util.List;
 import java.util.Map;
@@ -21,11 +21,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.thinkgem.jeesite.common.config.Global;
-import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.test.entity.TestTree;
-import com.thinkgem.jeesite.test.service.TestTreeService;
+import com.fxb.jeesite.common.config.Global;
+import com.fxb.jeesite.common.web.BaseController;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.test.entity.TestTree;
+import com.fxb.jeesite.test.service.TestTreeService;
 
 /**
  * 树结构生成Controller

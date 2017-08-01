@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.common.security.shiro.cache;
+package com.fxb.jeesite.common.security.shiro.cache;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -18,8 +18,8 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
 import com.google.common.collect.Sets;
-import com.thinkgem.jeesite.common.utils.JedisUtils;
-import com.thinkgem.jeesite.common.web.Servlets;
+import com.fxb.jeesite.common.utils.JedisUtils;
+import com.fxb.jeesite.common.web.Servlets;
 
 /**
  * 自定义授权缓存管理类

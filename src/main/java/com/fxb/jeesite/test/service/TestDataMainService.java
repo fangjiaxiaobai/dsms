@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.test.service;
+package com.fxb.jeesite.test.service;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.thinkgem.jeesite.common.persistence.Page;
-import com.thinkgem.jeesite.common.service.CrudService;
-import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.test.entity.TestDataMain;
-import com.thinkgem.jeesite.test.dao.TestDataMainDao;
-import com.thinkgem.jeesite.test.entity.TestDataChild;
-import com.thinkgem.jeesite.test.dao.TestDataChildDao;
+import com.fxb.jeesite.common.persistence.Page;
+import com.fxb.jeesite.common.service.CrudService;
+import com.fxb.jeesite.common.utils.StringUtils;
+import com.fxb.jeesite.test.entity.TestDataMain;
+import com.fxb.jeesite.test.dao.TestDataMainDao;
+import com.fxb.jeesite.test.entity.TestDataChild;
+import com.fxb.jeesite.test.dao.TestDataChildDao;
 
 /**
  * 主子表生成Service
