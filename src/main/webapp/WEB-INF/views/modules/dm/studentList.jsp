@@ -81,7 +81,7 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="student">
 			<tr>
-				<td><a href="${ctx}/dm/student/form?id=${student.id}">
+				<td><a href="${ctx}/dm/student/details?id=${student.id}">
 					${student.name}
 				</a></td>
 				<td>

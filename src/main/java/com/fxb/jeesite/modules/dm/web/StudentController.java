@@ -90,4 +90,10 @@ public class StudentController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/dm/student/?repage";
 	}
 
+	@RequiresPermissions("dm:student:view")
+	@RequestMapping(value="details")
+	public String details(){
+        return "modules/dm/details";
+    }
+
 }

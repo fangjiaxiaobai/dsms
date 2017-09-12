@@ -13,6 +13,14 @@ public class WebContextListener extends org.springframework.web.context.ContextL
 		if (!SystemService.printKeyLoadMessage()){
 			return null;
 		}
-		return super.initWebApplicationContext(servletContext);
+		StringBuilder sb = new StringBuilder();
+		sb.append(" _____  __    __  _____  \n" +
+                  "|  ___| \\ \\  / / |  _  \\ \n" +
+                  "| |__    \\ \\/ /  | |_| | \n" +
+                  "|  __|    }  {   |  _  { \n" +
+                  "| |      / /\\ \\  | |_| | \n" +
+                  "|_|     /_/  \\_\\ |_____/ \n\n\n");
+        System.out.println(sb.toString());
+        return super.initWebApplicationContext(servletContext);
 	}
 }
