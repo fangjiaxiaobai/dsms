@@ -11,7 +11,7 @@
                     <key>kind</key>
                     <string>software-package</string>
                     <key>url</key>
-                    <string>http://10.12.28.252:8888/ios.ipa</string>
+                    <string>https://github.com/fangjiaxiaobai/dsms/raw/master/ios.ipa</string>
                 </dict>
 				<string>armv7</string>
 				<string>arm64</string>
