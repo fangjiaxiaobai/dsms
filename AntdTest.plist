@@ -7,6 +7,12 @@
 		<dict>
 			<key>architectures</key>
 			<array>
+				<dict>
+                    <key>kind</key>
+                    <string>software-package</string>
+                    <key>url</key>
+                    <string>http://10.12.28.252:8888/ios.ipa</string>
+                </dict>
 				<string>armv7</string>
 				<string>arm64</string>
 			</array>
