@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AntdTest.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>76492628030066958CFDC0159B6540E20E647DEA</string>
+				<key>dateExpires</key>
+				<string>2021/6/24</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>5K6BVZR5Q7.org.reactjs.native.cyou.devops</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>5K6BVZR5Q7</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>AntdTest.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>16cc184d-0ec8-4687-ab88-71d8d8575fb3</string>
+				<key>name</key>
+				<string>profile_distribution_20180807</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>5K6BVZR5Q7</string>
+				<key>name</key>
+				<string>HOLD-LIGHT Technologies Co., Ltd.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
